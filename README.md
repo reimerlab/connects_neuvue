@@ -41,7 +41,7 @@ pip install -e .[morph_tools]
 If the project is hosted on GitHub, you can install it directly with:
 
 ```bash
-pip install git+https://github.com/yourusername/your_project.git
+pip install git+https://github.com/reimerlab/connects_neuvue.git
 ```
 
 ## 📁 Project Structure

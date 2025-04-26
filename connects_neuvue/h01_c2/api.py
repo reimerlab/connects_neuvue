@@ -8,24 +8,23 @@ from ..utils import (
 class API:
     def __init__(
         self,
-        secret_password = None,
-        secret_dict=None,
+        dj_host = None,
+        dj_user = None,
+        dj_password = None,
         **kwargs):
-        
-        if secret_dict is None:
-            secret_dict = self.secret_dict_from_password(secret_password)
-        
-        dj.config['database.password'] = secret_dict['password']
-        dj.config['database.username'] = secret_dict['username']
-        dj.conn()
-        
+        try:
+            if dj_host is not None:
+                dj.conn(host=dj_host, user=dj_user, password=dj_password)
+            else:
+                dj.conn()
+        except dj.errors.OperationalError:
+            raise ValueError(
+                "DataJoint connection failed. Check your credentials and network connection."
+            )
         from .schema import AutoProofreadNeuron
         
         self.autoproof_table = AutoProofreadNeuron
         self.autoproof_obj_table = self.autoproof_table.Obj
-        
-    def secret_dict_from_password(password,username='admin'):
-        return {'username': username, 'password': password}
 
     def nx_graph_autoproof_from_segment_id(
         self,

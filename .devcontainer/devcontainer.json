@@ -1,0 +1,30 @@
+//devcontainer.json
+{
+    "name": "H01Neuvue",  
+    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+    "dockerComposeFile": "compose.yml",
+    "service": "connects_proof_h01_neuvue_notebook",
+    "workspaceFolder": "/home/neuvue/workspace",
+  
+    // Features to add to the dev container. More info: https://containers.dev/features.
+    // "features": {},
+    "customizations": {
+      "vscode": {
+        "settings": {},
+        "extensions": ["ms-python.python",
+          "ms-toolsai.jupyter"]
+      }
+    },
+  
+  "forwardPorts": [8888],
+        "portsAttributes": {
+          "8888": {
+            "label": "Jupyter",
+            "requireLocalPort": true,
+            "onAutoForward": "ignore"
+          }
+        },
+
+    "postCreateCommand": "jupyter lab --ip=0.0.0.0  --NotebookApp.token=$JUPYTER_NB --no-browser"
+  }
+  

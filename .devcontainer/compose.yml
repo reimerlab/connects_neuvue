@@ -1,0 +1,11 @@
+services:
+  connects_proof_h01_neuvue_notebook:
+    image: jr-saltmaster.ad.bcm.edu:5000/h01_neuvue:latest
+    container_name: h01neuvue-nb
+    hostname: localhost
+    volumes:
+      - /mnt/:/mnt/
+      - /home/mhu/code/H01_Neuvue/h01NeuvueDev:/home/neuvue/workspace
+    env_file: .env
+    command: >
+      jupyter lab --ip=0.0.0.0 --NotebookApp.token=${JUPYTER_NB} --no-browser
