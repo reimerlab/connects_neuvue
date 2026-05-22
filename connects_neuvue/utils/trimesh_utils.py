@@ -1,4 +1,5 @@
 import trimesh
+import numpy as np
 def empty_mesh():
     return trimesh.Trimesh(vertices=np.array([]),
                           faces=np.array([]))
